@@ -525,7 +525,7 @@ What would you like to know more about John Daryl's work?`;
       color: "from-amber-600 to-orange-700",
       description: "A comprehensive barber shop booking system with real-time appointment scheduling, customer management, and service tracking.",
       features: ["Real-time Booking", "Customer Management", "Service Scheduling", "Payment Integration", "Admin Dashboard", "Mobile Responsive"],
-      github: "https://github.com/johndaryljohn/r-r-barber-booking-system",
+      github: "https://github.com/darylcommits/r-r_barber_booking_system",
       live: "https://r-r-barber-booking-system.vercel.app/",
       status: "Completed",
       category: "Business Management"
@@ -538,20 +538,20 @@ What would you like to know more about John Daryl's work?`;
       color: "from-blue-600 to-teal-700",
       description: "A medical center management system for patient records, appointments, and healthcare service management.",
       features: ["Patient Management", "Appointment Scheduling", "Medical Records", "Staff Management", "Reports & Analytics", "Secure Database"],
-      github: "https://github.com/johndaryljohn/ms-gorospe-center",
+      github: "https://github.com/darylcommits/ms-gorospe-center",
       live: "https://ms-gorospe-center.vercel.app/",
       status: "Completed",
       category: "Healthcare"
     },
     {
       id: 3,
-      title: "Silario Dental Clinic System",
+      title: "Silario Clinic System",
       tech: "React, Tailwind CSS, Supabase",
       image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       color: "from-emerald-600 to-green-700",
       description: "A clinic management system designed for efficient patient care, appointment scheduling, and medical record keeping.",
       features: ["Patient Records", "Appointment System", "Medical History", "Prescription Management", "Billing System", "User Authentication"],
-      github: "https://github.com/johndaryljohn/silario-clinic-system",
+      github: "https://github.com/darylcommits/Silario_Clinic_System",
       live: "https://silario-clinic-system.vercel.app/",
       status: "Completed",
       category: "Healthcare"
@@ -564,7 +564,7 @@ What would you like to know more about John Daryl's work?`;
       color: "from-indigo-600 to-purple-700",
       description: "A comprehensive school management system for tracking student grades, attendance, and academic performance.",
       features: ["Grade Management", "Attendance Tracking", "Student Records", "Teacher Dashboard", "Parent Portal", "Academic Reports"],
-      github: "https://github.com/johndaryljohn/iskwela-grading-attendance-system",
+      github: "https://github.com/darylcommits/iskwela-grading-attendance-system",
       live: "https://iskwela-grading-attendance-system20.vercel.app/",
       status: "Completed",
       category: "Education"
@@ -1053,9 +1053,9 @@ What would you like to know more about John Daryl's work?`;
                 {/* Quick Stats */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-3 sm:mb-4">
                   {[
-                    { number: "25+", label: "Projects", color: "text-blue-400" },
+                    { number: "15+", label: "Projects", color: "text-blue-400" },
                     { number: "3+", label: "Years", color: "text-green-400" },
-                    { number: "34+", label: "Clients", color: "text-purple-400" },
+                    { number: "17+", label: "Clients", color: "text-purple-400" },
                     { number: "99.8%", label: "Uptime", color: "text-orange-400" }
                   ].map((stat, index) => (
                     <div key={index} className={`text-center p-2 rounded-lg ${darkMode ? 'bg-gray-800/50' : 'bg-white/50'} backdrop-blur-sm hover:scale-105 transition-transform duration-200`}>
@@ -1250,12 +1250,20 @@ What would you like to know more about John Daryl's work?`;
                         <span>Live Demo</span>
                       </a>
                       
-                     
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full px-4 py-3 bg-black/60 text-white rounded-lg font-semibold hover:bg-black/80 transition-all duration-200 flex items-center justify-center space-x-2 transform hover:scale-105 shadow-lg no-underline"
+                      >
+                        <Github className="w-4 h-4" />
+                        <span>Source Code</span>
+                      </a>
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </div>
             ))}
           </div>
@@ -1297,7 +1305,7 @@ What would you like to know more about John Daryl's work?`;
 
               <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-6 sm:mt-8">
                 {[
-                  { number: "14+", label: "Projects Completed", color: "text-blue-400" },
+                  { number: "12+", label: "Projects Completed", color: "text-blue-400" },
                   { number: "2+", label: "Years Experience", color: "text-green-400" },
                   { number: "12+", label: "Happy Clients", color: "text-purple-400" },
                   { number: "24/7", label: "Support", color: "text-orange-400" }
