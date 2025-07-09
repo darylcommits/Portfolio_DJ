@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { 
-  ChevronDown, Mail, MapPin, Code, Award, User, Calendar, Star, Quote, 
-  Github, Linkedin, ExternalLink, Play, Volume2, VolumeX, Moon, Sun, 
-  Zap, Coffee, Heart, Eye, Download, Send, ChevronUp, MessageSquare, 
-  Clock, CheckCircle, XCircle, RefreshCw, Terminal, FileText, Globe, 
-  Search, Filter, Brain, Sparkles, Menu, X, Minimize2, Loader, Copy
+  ChevronDown, Mail, MapPin, Code, User, Calendar, Star, Quote, 
+  Github, Facebook, ExternalLink, Moon, Sun, 
+  Zap, Coffee, Heart, Eye, Download, Send, ChevronUp, 
+  Clock, Globe, 
+  Search, Filter, Brain, Sparkles, Menu, X, Minimize2, Loader
 } from 'lucide-react';
 
 // Define proper types for the application
@@ -55,12 +55,6 @@ interface ChatMessage {
   timestamp: number;
 }
 
-interface CodeExample {
-  title: string;
-  language: string;
-  code: string;
-}
-
 interface SkillProgress {
   [key: string]: number;
 }
@@ -70,11 +64,8 @@ const Portfolio = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const [darkMode, setDarkMode] = useState(true);
   const [typedText, setTypedText] = useState('');
-  const [currentSkill, setCurrentSkill] = useState(0);
-  const [showModal, setShowModal] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [particles, setParticles] = useState<Particle[]>([]);
   const [skillProgress, setSkillProgress] = useState<SkillProgress>({});
@@ -90,14 +81,8 @@ const Portfolio = () => {
   ]);
   const [chatInput, setChatInput] = useState('');
   const [chatTyping, setChatTyping] = useState(false);
-  const [codeEditorOpen, setCodeEditorOpen] = useState(false);
-  const [selectedCodeExample, setSelectedCodeExample] = useState(0);
-  const [editorCode, setEditorCode] = useState('');
-  const [editorOutput, setEditorOutput] = useState('');
   const [filterTech, setFilterTech] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
-  const [isCodeRunning, setIsCodeRunning] = useState(false);
-  const [visitCount] = useState(342);
   const [onlineStatus] = useState(true);
   const [aiThinking, setAiThinking] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -107,7 +92,6 @@ const Portfolio = () => {
   const animationFrameRef = useRef<number | null>(null);
   const chatMessagesRef = useRef<HTMLDivElement>(null);
   const textToType = "Full-Stack Developer & Innovation Architect";
-  const skills = ['React', 'Tailwind CSS', 'Supabase', 'JavaScript', 'Bootstrap', 'CSS3', 'HTML5', 'Vercel'];
 
   // Professional profile data
   const profileData = {
@@ -116,7 +100,7 @@ const Portfolio = () => {
     location: "Ilocos Sur, PH",
     email: "dv2dsr@gmail.com",
     phone: "+639362482388",
-    bio: "Passionate full-stack developer with 2+ years of experience crafting innovative web solutions. Specialized in React, Tailwind CSS, and Supabase with a proven track record of delivering scalable applications that drive business growth.",
+    bio: "Passionate full-stack developer with 3+ years of experience crafting innovative web solutions. Specialized in React, Tailwind CSS, and Supabase with a proven track record of delivering scalable applications that drive business growth.",
     image: "https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/502579897_2945522685621001_1262536881292075170_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFSGUJfLqyBJS5cm6ieUzWdY14aC-WBALdjXhoL5YEAt0BemM15joUyKgcChjnRXOMI9OGz0UAzDf19V-ja_MHj&_nc_ohc=uR9khxzjNUQQ7kNvwGYVNfE&_nc_oc=AdlGoa-LVr2W7zSWS2YBo3lmf1fH5qbGwf1qOQWnijw8zRlShWTQ4lOQ3DEoLMAankI&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=kxapkQ93pra-D4m8SjMGIw&oh=00_AfQh8J0Tz0Ll5u_Pd0-CleRhkjm_Gbkc1k_z0YRoS8ShAg&oe=686FD8D6",
     availability: "Full Stack Developer",
     responseTime: "Within 24 hours",
@@ -170,7 +154,7 @@ const Portfolio = () => {
       case 'greeting':
         return `Hello! Great to meet you! I'm John Daryl's AI assistant with comprehensive knowledge about his work and expertise. I can help you with:
 
-• **Technical Skills & Experience** - Learn about his 2+ years in full-stack development
+• **Technical Skills & Experience** - Learn about his 3+ years in full-stack development
 • **Project Portfolio** - Explore detailed case studies with real results
 • **Services & Consulting** - Understand how John Daryl can help your project
 • **Pricing & Availability** - Get transparent information about rates and timelines
@@ -179,13 +163,13 @@ const Portfolio = () => {
 What would you like to know about John Daryl's work?`;
 
       case 'about':
-        return `John Daryl Lucero is a Full-Stack Developer based in Ilocos Sur, PH with 2+ years of professional experience. Here's what makes him unique:
+        return `John Daryl Lucero is a Full-Stack Developer based in Ilocos Sur, PH with 3+ years of professional experience. Here's what makes him unique:
 
 **Background:**
 • Started with a passion for creating digital solutions
 • Focused on modern web development technologies
 • Specialized in React, Tailwind CSS, and Supabase
-• Delivered real-world solutions for healthcare, education, and business
+• Delivered 19+ real-world solutions for healthcare, education, and business
 
 **Personality & Approach:**
 • Creative problem-solver who loves tackling real-world challenges
@@ -256,7 +240,7 @@ John Daryl's focus is on creating practical, user-friendly solutions using moder
 • **Results:** 99% tracking accuracy, 85% faster processing
 • **Tech Stack:** React, Tailwind CSS, Supabase, Real-time Updates
 
-All projects feature responsive design, modern UI/UX, and are deployed on Vercel. Would you like to explore any specific project in detail?`;
+All projects feature responsive design, modern UI/UX, and are deployed on Vercel. I have 15+ additional projects in development and planning phases. Would you like to explore any specific project in detail?`;
 
       case 'contact':
         return `Ready to start your project? Here's how to reach John Daryl:
@@ -284,9 +268,9 @@ Ready to start your project? Click the contact form below or send an email direc
         return `I'm here to help! I have comprehensive knowledge about John Daryl's work and can assist with:
 
 **🎯 Popular Questions:**
-• **"Tell me about John Daryl's experience"** - 2+ years full-stack development
+• **"Tell me about John Daryl's experience"** - 3+ years full-stack development
 • **"What technologies does he use?"** - React, Tailwind CSS, Supabase, and more
-• **"Show me recent projects"** - Case studies with real results and metrics
+• **"Show me recent projects"** - 19+ completed projects with real results and metrics
 • **"What are his rates?"** - Transparent pricing from $25/hour
 • **"How can I hire him?"** - Contact process and availability
 
@@ -303,20 +287,20 @@ What would you like to know more about John Daryl's work?`;
 
   // Enhanced particle system with physics
   const initializeParticles = useCallback(() => {
-    const particleCount = 80;
+    const particleCount = 60;
     const newParticles: Particle[] = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.8,
-      vy: (Math.random() - 0.5) * 0.8,
-      size: Math.random() * 3 + 1,
-      opacity: Math.random() * 0.6 + 0.1,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      size: Math.random() * 2 + 0.5,
+      opacity: Math.random() * 0.4 + 0.1,
       color: `hsl(${Math.random() * 60 + 200}, 70%, 60%)`,
       pulse: Math.random() * Math.PI * 2,
       pulseSpeed: Math.random() * 0.02 + 0.01,
       trail: [],
-      maxTrailLength: 5
+      maxTrailLength: 3
     }));
     setParticles(newParticles);
   }, []);
@@ -341,8 +325,8 @@ What would you like to know more about John Daryl's work?`;
           Math.pow(mousePosition.x - newX, 2) + Math.pow(mousePosition.y - newY, 2)
         );
         
-        if (mouseDistance < 150) {
-          const force = (150 - mouseDistance) / 150 * 0.02;
+        if (mouseDistance < 100) {
+          const force = (100 - mouseDistance) / 100 * 0.02;
           const angle = Math.atan2(newY - mousePosition.y, newX - mousePosition.x);
           particle.vx += Math.cos(angle) * force;
           particle.vy += Math.sin(angle) * force;
@@ -369,112 +353,6 @@ What would you like to know more about John Daryl's work?`;
 
     animationFrameRef.current = requestAnimationFrame(animateParticles);
   }, [mousePosition]);
-
-  // Code examples for live editor
-  const codeExamples: CodeExample[] = [
-    {
-      title: "React Component - Booking System",
-      language: "javascript",
-      code: `import React, { useState, useEffect } from 'react';
-import { supabase } from './supabaseClient';
-
-// Booking System Component for R&R Barber Shop
-const BookingSystem = () => {
-  const [appointments, setAppointments] = useState([]);
-  const [selectedService, setSelectedService] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
-  const [customerInfo, setCustomerInfo] = useState({
-    name: '',
-    phone: '',
-    email: ''
-  });
-
-  const services = [
-    { id: 1, name: 'Haircut', duration: 30, price: 300 },
-    { id: 2, name: 'Beard Trim', duration: 20, price: 150 },
-    { id: 3, name: 'Hair Wash', duration: 15, price: 100 },
-    { id: 4, name: 'Full Service', duration: 60, price: 500 }
-  ];
-
-  // Book appointment
-  const bookAppointment = async () => {
-    const { data, error } = await supabase
-      .from('appointments')
-      .insert([
-        {
-          customer_name: customerInfo.name,
-          customer_phone: customerInfo.phone,
-          customer_email: customerInfo.email,
-          service_id: selectedService,
-          appointment_date: selectedDate,
-          appointment_time: selectedTime,
-          status: 'confirmed'
-        }
-      ]);
-
-    if (error) {
-      console.error('Error booking appointment:', error);
-      alert('Failed to book appointment. Please try again.');
-    } else {
-      alert('Appointment booked successfully!');
-      // Reset form
-      setCustomerInfo({ name: '', phone: '', email: '' });
-      setSelectedService('');
-      setSelectedDate('');
-      setSelectedTime('');
-    }
-  };
-
-  return (
-    <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-6 text-center">Book Your Appointment</h2>
-      
-      <div className="space-y-4">
-        {/* Service Selection */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Select Service</label>
-          <select 
-            value={selectedService}
-            onChange={(e) => setSelectedService(e.target.value)}
-            className="w-full p-2 border rounded-md"
-          >
-            <option value="">Choose a service</option>
-            {services.map(service => (
-              <option key={service.id} value={service.id}>
-                {service.name} - ₱{service.price} ({service.duration} min)
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Customer Information */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Your Name</label>
-          <input
-            type="text"
-            value={customerInfo.name}
-            onChange={(e) => setCustomerInfo({...customerInfo, name: e.target.value})}
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter your full name"
-          />
-        </div>
-
-        <button
-          onClick={bookAppointment}
-          disabled={!selectedService || !customerInfo.name || !selectedDate}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          Book Appointment
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export default BookingSystem;`
-    }
-  ];
 
   // Initialize particles on mount
   useEffect(() => {
@@ -512,13 +390,13 @@ export default BookingSystem;`
     return () => clearInterval(timer);
   }, [textToType]);
 
-  // Skills rotation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSkill(prev => (prev + 1) % skills.length);
-    }, 1500);
-    return () => clearInterval(interval);
-  }, [skills.length]);
+  // Skills rotation - removed since skills sidebar was removed
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentSkill(prev => (prev + 1) % skills.length);
+  //   }, 1500);
+  //   return () => clearInterval(interval);
+  // }, [skills.length]);
 
   // Testimonials rotation
   useEffect(() => {
@@ -527,11 +405,6 @@ export default BookingSystem;`
     }, 6000);
     return () => clearInterval(interval);
   }, []);
-
-  // Initialize code editor
-  useEffect(() => {
-    setEditorCode(codeExamples[selectedCodeExample].code);
-  }, [selectedCodeExample]);
 
   // Mouse tracking
   useEffect(() => {
@@ -642,52 +515,6 @@ export default BookingSystem;`
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const copyToClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      alert('Code copied to clipboard!');
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  };
-
-  // Enhanced code execution
-  const runCode = async () => {
-    setIsCodeRunning(true);
-    setEditorOutput("Executing code...");
-    
-    setTimeout(() => {
-      try {
-        const codeExample = codeExamples[selectedCodeExample];
-        let output = "";
-        
-        switch(codeExample.language) {
-          case 'javascript':
-            output = `✅ Code executed successfully!
-
-// Simulated output for ${codeExample.title}
-console.log('Code is syntactically correct');
-console.log('All functions defined properly');
-console.log('Ready for production use');
-
-// Performance metrics:
-- Parse time: 23ms
-- Memory usage: 2.1MB
-- Complexity: O(n log n)`;
-            break;
-          default:
-            output = "✅ Code executed successfully!";
-        }
-        
-        setEditorOutput(output);
-      } catch (error) {
-        setEditorOutput("❌ Error: " + (error as Error).message);
-      } finally {
-        setIsCodeRunning(false);
-      }
-    }, 1500);
-  };
-
   // Data - Real Projects with Images and Matching Colors
   const projects: Project[] = [
     {
@@ -707,7 +534,7 @@ console.log('Ready for production use');
       id: 2,
       title: "MS Gorospe Center System",
       tech: "React, Tailwind CSS, Supabase",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&h=300&fit=crop&crop=center",
       color: "from-blue-600 to-teal-700",
       description: "A medical center management system for patient records, appointments, and healthcare service management.",
       features: ["Patient Management", "Appointment Scheduling", "Medical Records", "Staff Management", "Reports & Analytics", "Secure Database"],
@@ -718,9 +545,9 @@ console.log('Ready for production use');
     },
     {
       id: 3,
-      title: "Silario Clinic System",
+      title: "Silario Dental Clinic System",
       tech: "React, Tailwind CSS, Supabase",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       color: "from-emerald-600 to-green-700",
       description: "A clinic management system designed for efficient patient care, appointment scheduling, and medical record keeping.",
       features: ["Patient Records", "Appointment System", "Medical History", "Prescription Management", "Billing System", "User Authentication"],
@@ -733,7 +560,7 @@ console.log('Ready for production use');
       id: 4,
       title: "Iskwela Grading & Attendance System",
       tech: "React, Tailwind CSS, Supabase",
-      image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=500&h=300&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1638828229405-8db92ff35af6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       color: "from-indigo-600 to-purple-700",
       description: "A comprehensive school management system for tracking student grades, attendance, and academic performance.",
       features: ["Grade Management", "Attendance Tracking", "Student Records", "Teacher Dashboard", "Parent Portal", "Academic Reports"],
@@ -746,14 +573,14 @@ console.log('Ready for production use');
 
   const experiences = [
     {
-      year: "2023 - Present",
+      year: "2024 - Present",
       company: "Freelance Developer",
       position: "Full-Stack Developer",
       description: "Building modern web applications for healthcare, education, and business management using React, Tailwind CSS, and Supabase.",
-      achievements: ["Delivered 4+ major projects", "Specialized in React & Supabase", "100% client satisfaction rate", "Mobile-responsive designs"]
+      achievements: ["Delivered 19+ major projects", "Specialized in React & Supabase", "100% client satisfaction rate", "Mobile-responsive designs"]
     },
     {
-      year: "2022 - 2023",
+      year: "2022 - 2024",
       company: "Independent Projects",
       position: "Frontend Developer",
       description: "Focused on learning and mastering modern web technologies including React, JavaScript ES6+, and responsive design principles.",
@@ -778,15 +605,9 @@ console.log('Ready for production use');
     }
   ];
 
-  const certifications = [
-    { name: "React Developer Certificate", issuer: "Meta", year: "2023" },
-    { name: "JavaScript ES6+ Certification", issuer: "FreeCodeCamp", year: "2023" },
-    { name: "Web Development Bootcamp", issuer: "The Complete Web Developer", year: "2022" }
-  ];
-
   const socialLinks = [
-    { icon: Github, url: "https://github.com/johndaryljohn", label: "GitHub" },
-    { icon: Linkedin, url: "https://linkedin.com/in/johndaryljohn", label: "LinkedIn" },
+    { icon: Github, url: "https://github.com/darylcommits", label: "GitHub" },
+    { icon: Facebook, url: "https://www.facebook.com/johndaryl.lucero.1", label: "Facebook" },
     { icon: Mail, url: "mailto:dv2dsr@gmail.com", label: "Email" }
   ];
 
@@ -1004,31 +825,32 @@ console.log('Ready for production use');
       </div>
 
       {/* Enhanced Control Panel */}
-      <div className="fixed top-4 right-4 z-30 space-y-2">
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className={`p-3 rounded-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'} shadow-lg hover:scale-110 transition-all duration-300 group`}
-          onMouseEnter={() => setCursorVariant('hover')}
-          onMouseLeave={() => setCursorVariant('default')}
-        >
-          {darkMode ? <Sun className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" /> : <Moon className="w-5 h-5 group-hover:-rotate-12 transition-transform duration-300" />}
-        </button>
-        
-        <button
-          onClick={() => setSoundEnabled(!soundEnabled)}
-          className={`p-3 rounded-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'} shadow-lg hover:scale-110 transition-all duration-300 group`}
-        >
-          {soundEnabled ? <Volume2 className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" /> : <VolumeX className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />}
-        </button>
-
-        <button
-          onClick={() => setCodeEditorOpen(true)}
-          className={`p-3 rounded-full ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'} shadow-lg hover:scale-110 transition-all duration-300 group`}
-          onMouseEnter={() => setCursorVariant('hover')}
-          onMouseLeave={() => setCursorVariant('default')}
-        >
-          <Terminal className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-        </button>
+      <div className="fixed top-4 right-4 z-30">
+        {/* Smooth Dark Mode Toggle */}
+        <div className="relative">
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className={`relative w-16 h-8 rounded-full p-1 transition-all duration-300 ${
+              darkMode ? 'bg-gray-700' : 'bg-gray-300'
+            } shadow-lg hover:scale-105`}
+            onMouseEnter={() => setCursorVariant('hover')}
+            onMouseLeave={() => setCursorVariant('default')}
+          >
+            <div
+              className={`absolute top-1 w-6 h-6 rounded-full transition-all duration-300 transform flex items-center justify-center ${
+                darkMode 
+                  ? 'translate-x-8 bg-gray-800 text-yellow-400' 
+                  : 'translate-x-0 bg-white text-gray-600'
+              }`}
+            >
+              {darkMode ? (
+                <Moon className="w-4 h-4" />
+              ) : (
+                <Sun className="w-4 h-4" />
+              )}
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Enhanced Header - Mobile Responsive */}
@@ -1072,14 +894,6 @@ console.log('Ready for production use');
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
-          
-          {/* Desktop Stats */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <div className={`transition-all duration-1000 delay-300 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'}`}>
-              <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'} tracking-wider`}>VISITORS</span>
-              <p className="text-sm font-light">{visitCount.toLocaleString()}</p>
-            </div>
-          </div>
         </div>
 
         {/* Mobile Navigation Menu */}
@@ -1114,16 +928,6 @@ console.log('Ready for production use');
                 >
                   <Brain className="w-4 h-4" />
                   <span>Chat with AI</span>
-                </button>
-                <button
-                  onClick={() => {
-                    setCodeEditorOpen(true);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`w-full p-3 ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'} rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2`}
-                >
-                  <Terminal className="w-4 h-4" />
-                  <span>Live Code</span>
                 </button>
               </div>
             </nav>
@@ -1191,14 +995,14 @@ console.log('Ready for production use');
             : `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.08) 0%, transparent 50%)`
         }}
       >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
           {/* Profile Section */}
-          <div className={`order-2 lg:order-1 text-center lg:text-left transition-all duration-1500 ${
+          <div className={`order-2 xl:order-1 text-center xl:text-left transition-all duration-1500 ${
             isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
           }`}>
-            <div className="relative mb-6 sm:mb-8">
+            <div className="relative mb-4 sm:mb-6">
               {/* Profile Image */}
-              <div className="relative w-48 h-48 sm:w-64 sm:h-64 mx-auto lg:mx-0">
+              <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mx-auto xl:mx-0">
                 <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 p-1">
                   <div className="w-full h-full rounded-full overflow-hidden bg-gray-800">
                     <img 
@@ -1212,7 +1016,7 @@ console.log('Ready for production use');
                         if (fallback) fallback.style.display = 'flex';
                       }}
                     />
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-4xl sm:text-6xl font-bold hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl sm:text-4xl font-bold hidden">
                       {profileData.name.split(' ').map(n => n[0]).join('')}
                     </div>
                   </div>
@@ -1220,43 +1024,43 @@ console.log('Ready for production use');
               </div>
 
               {/* Profile Info */}
-              <div className="mt-6 sm:mt-8">
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <div className="mt-4 sm:mt-6">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   {profileData.name}
                 </h1>
-                <h2 className="text-lg sm:text-xl lg:text-2xl mb-3 sm:mb-4 text-blue-400 font-semibold">
+                <h2 className="text-base sm:text-lg md:text-xl mb-2 text-blue-400 font-semibold">
                   {profileData.title}
                 </h2>
-                <div className={`flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-4 mb-4 sm:mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'} text-sm`}>
-                  <div className="flex items-center space-x-1 sm:space-x-2">
-                    <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
+                <div className={`flex flex-wrap justify-center xl:justify-start gap-2 sm:gap-3 mb-3 sm:mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'} text-xs sm:text-sm`}>
+                  <div className="flex items-center space-x-1">
+                    <MapPin className="w-3 h-3" />
                     <span>{profileData.location}</span>
                   </div>
-                  <div className="flex items-center space-x-1 sm:space-x-2">
-                    <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <div className="flex items-center space-x-1">
+                    <Clock className="w-3 h-3" />
                     <span>{profileData.responseTime}</span>
                   </div>
-                  <div className="hidden sm:flex items-center space-x-2">
-                    <Globe className="w-4 h-4" />
+                  <div className="hidden sm:flex items-center space-x-1">
+                    <Globe className="w-3 h-3" />
                     <span>{profileData.languages.join(', ')}</span>
                   </div>
                 </div>
 
-                <p className={`text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 ${darkMode ? 'text-gray-300' : 'text-gray-600'} max-w-lg mx-auto lg:mx-0`}>
+                <p className={`text-xs sm:text-sm md:text-base leading-relaxed mb-3 sm:mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'} max-w-md mx-auto xl:mx-0`}>
                   {profileData.bio}
                 </p>
 
                 {/* Quick Stats */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-3 sm:mb-4">
                   {[
-                    { number: "20+", label: "Projects", color: "text-blue-400" },
-                    { number: "2+", label: "Years", color: "text-green-400" },
-                    { number: "26+", label: "Clients", color: "text-purple-400" },
+                    { number: "25+", label: "Projects", color: "text-blue-400" },
+                    { number: "3+", label: "Years", color: "text-green-400" },
+                    { number: "34+", label: "Clients", color: "text-purple-400" },
                     { number: "99.8%", label: "Uptime", color: "text-orange-400" }
                   ].map((stat, index) => (
-                    <div key={index} className={`text-center p-3 sm:p-4 rounded-lg ${darkMode ? 'bg-gray-800/50' : 'bg-white/50'} backdrop-blur-sm hover:scale-105 transition-transform duration-200`}>
-                      <div className={`text-xl sm:text-2xl font-bold ${stat.color} mb-1`}>{stat.number}</div>
-                      <div className={`text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{stat.label}</div>
+                    <div key={index} className={`text-center p-2 rounded-lg ${darkMode ? 'bg-gray-800/50' : 'bg-white/50'} backdrop-blur-sm hover:scale-105 transition-transform duration-200`}>
+                      <div className={`text-sm sm:text-base md:text-lg font-bold ${stat.color} mb-1`}>{stat.number}</div>
+                      <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -1265,59 +1069,59 @@ console.log('Ready for production use');
           </div>
 
           {/* Hero Text Section */}
-          <div className={`order-1 lg:order-2 text-center lg:text-left transition-all duration-2000 delay-500 ${
+          <div className={`order-1 xl:order-2 text-center xl:text-left transition-all duration-2000 delay-500 ${
             isLoaded ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
           }`}>
-            <div className="mb-6 sm:mb-8">
+            <div className="mb-4 sm:mb-6">
               <span className={`text-xs sm:text-sm tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-600'} animate-pulse`}>I AM</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider mb-4 sm:mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent leading-tight">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wider mb-3 sm:mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent leading-tight">
               FULL-STACK
               <br />
               DEVELOPER
             </h2>
             
-            <div className="h-12 sm:h-16 flex items-center justify-center lg:justify-start mb-6 sm:mb-8">
-              <span className="text-lg sm:text-xl md:text-2xl border-r-2 border-blue-400 animate-pulse pr-1">
+            <div className="h-6 sm:h-8 md:h-10 flex items-center justify-center xl:justify-start mb-4 sm:mb-6">
+              <span className="text-sm sm:text-base md:text-lg border-r-2 border-blue-400 animate-pulse pr-1">
                 {typedText}
               </span>
             </div>
             
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row justify-center xl:justify-start space-y-2 sm:space-y-0 sm:space-x-3 mb-4 sm:mb-6">
               <button 
                 onClick={() => scrollToSection(4)}
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl text-sm sm:text-base"
+                className="px-4 py-2 sm:px-5 sm:py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl text-sm"
                 onMouseEnter={() => setCursorVariant('hover')}
                 onMouseLeave={() => setCursorVariant('default')}
               >
                 <span>Get In Touch</span>
-                <Send className="w-4 h-4" />
+                <Send className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
               
               <button 
                 onClick={() => scrollToSection(1)}
-                className={`px-6 sm:px-8 py-3 sm:py-4 ${darkMode ? 'bg-gray-800/80 hover:bg-gray-700/80' : 'bg-white/80 hover:bg-gray-100/80'} backdrop-blur-sm rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl text-sm sm:text-base`}
+                className={`px-4 py-2 sm:px-5 sm:py-3 ${darkMode ? 'bg-gray-800/80 hover:bg-gray-700/80' : 'bg-white/80 hover:bg-gray-100/80'} backdrop-blur-sm rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl text-sm`}
                 onMouseEnter={() => setCursorVariant('hover')}
                 onMouseLeave={() => setCursorVariant('default')}
               >
                 <span>View Work</span>
-                <Eye className="w-4 h-4" />
+                <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
             </div>
 
-            <div className="flex justify-center lg:justify-start space-x-4 sm:space-x-6">
+            <div className="flex justify-center xl:justify-start space-x-3 sm:space-x-4">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
                   <a
                     key={social.label}
                     href={social.url}
-                    className={`p-3 sm:p-4 rounded-full ${darkMode ? 'bg-gray-800/80 hover:bg-gray-700/80' : 'bg-white/80 hover:bg-gray-100/80'} backdrop-blur-sm shadow-lg transition-all duration-300 transform hover:scale-110 hover:rotate-12 group`}
+                    className={`p-2 rounded-full ${darkMode ? 'bg-gray-800/80 hover:bg-gray-700/80' : 'bg-white/80 hover:bg-gray-100/80'} backdrop-blur-sm shadow-lg transition-all duration-300 transform hover:scale-110 hover:rotate-12 group`}
                     onMouseEnter={() => setCursorVariant('hover')}
                     onMouseLeave={() => setCursorVariant('default')}
                   >
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-200" />
+                    <Icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
                   </a>
                 );
               })}
@@ -1332,26 +1136,6 @@ console.log('Ready for production use');
         }`}>
           <ChevronDown className="w-6 h-6 animate-bounce" />
         </div>
-
-        {/* Enhanced Floating Skills - Hidden on Mobile */}
-        <div className="absolute top-1/4 left-8 space-y-4 hidden xl:block">
-          {skills.map((skill, index) => (
-            <div
-              key={skill}
-              className={`px-4 py-2 rounded-full text-sm backdrop-blur-sm transition-all duration-500 transform ${
-                index === currentSkill 
-                  ? 'bg-blue-500/90 text-white scale-110 translate-x-4 shadow-lg' 
-                  : `${darkMode ? 'bg-gray-800/60 text-gray-300' : 'bg-white/60 text-gray-600'} scale-100 hover:scale-105`
-              }`}
-              style={{ 
-                animationDelay: `${index * 100}ms`,
-                opacity: index === currentSkill ? 1 : 0.7 
-              }}
-            >
-              {skill}
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* Section 02 - Enhanced Projects with Real Images - Mobile Responsive */}
@@ -1363,7 +1147,7 @@ console.log('Ready for production use');
       >
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 sm:mb-16 text-center">
-            <h3 className="text-4xl sm:text-6xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               PROJECTS
             </h3>
             <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} max-w-2xl mx-auto text-base sm:text-lg mb-6 sm:mb-8 px-4`}>
@@ -1397,19 +1181,16 @@ console.log('Ready for production use');
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {filteredProjects.map((project, index) => (
               <div
                 key={project.id}
-                className={`group relative h-96 sm:h-[450px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 hover:scale-105 hover:-rotate-1 ${
+                className={`group relative h-96 sm:h-[450px] rounded-3xl overflow-hidden transition-all duration-700 hover:scale-105 hover:-rotate-1 ${
                   activeSection >= 1 
                     ? 'translate-y-0 opacity-100' 
                     : 'translate-y-12 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
-                onClick={() => {
-                  window.open(project.live, '_blank');
-                }}
                 onMouseEnter={() => setCursorVariant('hover')}
                 onMouseLeave={() => setCursorVariant('default')}
               >
@@ -1459,27 +1240,17 @@ console.log('Ready for production use');
                     
                     {/* Action Buttons */}
                     <div className="flex flex-col space-y-3 mb-4">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(project.live, '_blank');
-                        }}
-                        className="w-full px-4 py-3 bg-white/90 text-gray-900 rounded-lg font-semibold hover:bg-white transition-all duration-200 flex items-center justify-center space-x-2 transform hover:scale-105 shadow-lg"
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full px-4 py-3 bg-white/90 text-gray-900 rounded-lg font-semibold hover:bg-white transition-all duration-200 flex items-center justify-center space-x-2 transform hover:scale-105 shadow-lg no-underline"
                       >
                         <ExternalLink className="w-4 h-4" />
                         <span>Live Demo</span>
-                      </button>
+                      </a>
                       
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(project.github, '_blank');
-                        }}
-                        className="w-full px-4 py-3 bg-black/60 text-white rounded-lg font-semibold hover:bg-black/80 transition-all duration-200 flex items-center justify-center space-x-2 transform hover:scale-105 shadow-lg"
-                      >
-                        <Github className="w-4 h-4" />
-                        <span>Source Code</span>
-                      </button>
+                     
                     </div>
                   </div>
                 </div>
@@ -1493,7 +1264,8 @@ console.log('Ready for production use');
         <div className={`absolute bottom-8 left-4 sm:left-8 ${darkMode ? 'text-gray-500' : 'text-gray-400'} text-sm font-mono`}>.02</div>
       </section>
 
-      {/* Section 03 - Enhanced About & Skills - Mobile Responsive */}
+      {/* Continue with remaining sections... */}
+      {/* Section 03 - About & Skills */}
       <section 
         ref={el => {
           if (el) sectionsRef.current[2] = el;
@@ -1505,14 +1277,14 @@ console.log('Ready for production use');
           <div className={`transition-all duration-1000 ${
             activeSection >= 2 ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
           }`}>
-            <h3 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 flex items-center">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 flex items-center">
               <User className="mr-3 sm:mr-4 text-blue-500" />
               ABOUT ME
             </h3>
             
             <div className={`space-y-4 sm:space-y-6 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               <p className="text-base sm:text-lg leading-relaxed">
-                I'm a passionate full-stack developer with 2+ years of experience creating 
+                I'm a passionate full-stack developer with 3+ years of experience creating 
                 innovative web solutions. I specialize in React, Tailwind CSS, and Supabase,
                 with a keen eye for design and user experience that drives business results.
               </p>
@@ -1525,9 +1297,9 @@ console.log('Ready for production use');
 
               <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-6 sm:mt-8">
                 {[
-                  { number: "4+", label: "Projects Completed", color: "text-blue-400" },
+                  { number: "14+", label: "Projects Completed", color: "text-blue-400" },
                   { number: "2+", label: "Years Experience", color: "text-green-400" },
-                  { number: "6+", label: "Happy Clients", color: "text-purple-400" },
+                  { number: "12+", label: "Happy Clients", color: "text-purple-400" },
                   { number: "24/7", label: "Support", color: "text-orange-400" }
                 ].map((stat, index) => (
                   <div key={index} className={`p-3 sm:p-4 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-200'} text-center transition-all duration-300 hover:scale-105 hover:shadow-lg group`}>
@@ -1536,32 +1308,14 @@ console.log('Ready for production use');
                   </div>
                 ))}
               </div>
-
-              {/* Quick Links */}
-              <div className="flex flex-wrap gap-2 sm:gap-3 mt-6 sm:mt-8">
-                <button 
-                  onClick={() => setCodeEditorOpen(true)}
-                  className="px-3 sm:px-4 py-2 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition-colors duration-200 flex items-center space-x-2 text-sm"
-                >
-                  <Code className="w-4 h-4" />
-                  <span>View Code</span>
-                </button>
-                <button 
-                  onClick={() => setChatOpen(true)}
-                  className="px-3 sm:px-4 py-2 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors duration-200 flex items-center space-x-2 text-sm"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Ask AI</span>
-                </button>
-              </div>
             </div>
           </div>
 
-          {/* Enhanced Skills Section */}
+          {/* Skills Section */}
           <div className={`transition-all duration-1000 delay-300 ${
             activeSection >= 2 ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
           }`}>
-            <h3 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 flex items-center">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 flex items-center">
               <Code className="mr-3 sm:mr-4 text-purple-500" />
               SKILLS & EXPERTISE
             </h3>
@@ -1601,84 +1355,53 @@ console.log('Ready for production use');
                 </div>
               ))}
             </div>
-
-            {/* Certifications */}
-            <div className="mt-8 sm:mt-12">
-              <h4 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 flex items-center">
-                <Award className="mr-2 text-yellow-500" />
-                Professional Certifications
-              </h4>
-              <div className="space-y-3 sm:space-y-4">
-                {certifications.map((cert) => (
-                  <div 
-                    key={cert.name}
-                    className={`p-3 sm:p-4 rounded-xl ${darkMode ? 'bg-gray-800 hover:bg-gray-700 border border-gray-700' : 'bg-gray-200 hover:bg-gray-300 border border-gray-300'} transition-all duration-300 hover:scale-105 hover:shadow-lg group`}
-                  >
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center space-x-2 sm:space-x-3">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <div>
-                          <h5 className="text-sm sm:text-base font-semibold group-hover:text-blue-400 transition-colors duration-200">{cert.name}</h5>
-                          <p className={`text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            {cert.issuer}
-                          </p>
-                        </div>
-                      </div>
-                      <span className={`text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full ${darkMode ? 'bg-blue-500/20 text-blue-300' : 'bg-blue-500/20 text-blue-600'} font-semibold`}>
-                        {cert.year}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
         
         <div className={`absolute bottom-8 left-4 sm:left-8 ${darkMode ? 'text-gray-500' : 'text-gray-400'} text-sm font-mono`}>.03</div>
       </section>
 
-      {/* Section 04 - Enhanced Experience & Testimonials */}
+      {/* Section 04 - Experience & Testimonials */}
       <section 
         ref={el => {
           if (el) sectionsRef.current[3] = el;
         }}
-        className="min-h-screen py-20 px-8"
+        className="min-h-screen py-16 sm:py-20 px-4 sm:px-8"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Experience Timeline */}
             <div className={`transition-all duration-1000 ${
               activeSection >= 3 ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
             }`}>
-              <h3 className="text-4xl font-bold mb-12 flex items-center">
-                <Calendar className="mr-4 text-green-500" />
+              <h3 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 flex items-center">
+                <Calendar className="mr-3 sm:mr-4 text-green-500" />
                 PROFESSIONAL JOURNEY
               </h3>
               
               <div className="relative">
                 <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500"></div>
                 
-                <div className="space-y-12">
+                <div className="space-y-8 sm:space-y-12">
                   {experiences.map((exp, index) => (
                     <div 
                       key={index}
-                      className={`relative pl-12 transition-all duration-700 group ${
+                      className={`relative pl-8 sm:pl-12 transition-all duration-700 group ${
                         activeSection >= 3 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                       }`}
                       style={{ transitionDelay: `${index * 300}ms` }}
                     >
-                      <div className="absolute left-0 top-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
-                        <div className="w-3 h-3 bg-white rounded-full"></div>
+                      <div className="absolute left-0 top-0 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
                       </div>
                       
-                      <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-800 hover:bg-gray-750 border border-gray-700' : 'bg-white hover:shadow-xl border border-gray-200'} transition-all duration-300 transform hover:scale-105 hover:-translate-y-2`}>
-                        <div className="flex justify-between items-start mb-4">
+                      <div className={`p-4 sm:p-6 rounded-xl ${darkMode ? 'bg-gray-800 hover:bg-gray-750 border border-gray-700' : 'bg-white hover:shadow-xl border border-gray-200'} transition-all duration-300 transform hover:scale-105 hover:-translate-y-2`}>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
                           <div>
-                            <h4 className="text-xl font-bold group-hover:text-blue-400 transition-colors duration-200">{exp.position}</h4>
+                            <h4 className="text-lg sm:text-xl font-bold group-hover:text-blue-400 transition-colors duration-200">{exp.position}</h4>
                             <p className="text-blue-400 font-semibold">{exp.company}</p>
                           </div>
-                          <span className={`text-sm px-3 py-1 rounded-full ${darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-600'} font-mono`}>
+                          <span className={`text-sm px-2 sm:px-3 py-1 rounded-full ${darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-600'} font-mono mt-2 sm:mt-0`}>
                             {exp.year}
                           </span>
                         </div>
@@ -1708,8 +1431,8 @@ console.log('Ready for production use');
             <div className={`transition-all duration-1000 delay-300 ${
               activeSection >= 3 ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
             }`}>
-              <h3 className="text-4xl font-bold mb-12 flex items-center">
-                <Quote className="mr-4 text-pink-500" />
+              <h3 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 flex items-center">
+                <Quote className="mr-3 sm:mr-4 text-pink-500" />
                 CLIENT TESTIMONIALS
               </h3>
               
@@ -1717,14 +1440,14 @@ console.log('Ready for production use');
                 {testimonials.map((testimonial, index) => (
                   <div
                     key={index}
-                    className={`p-6 rounded-xl ${darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white shadow-lg border border-gray-200'} transition-all duration-500 transform ${
+                    className={`p-4 sm:p-6 rounded-xl ${darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white shadow-lg border border-gray-200'} transition-all duration-500 transform ${
                       index === currentTestimonial 
                         ? 'scale-105 ring-2 ring-blue-400 shadow-xl' 
                         : 'scale-100 opacity-70 hover:opacity-90'
                     }`}
                   >
                     <div className="flex items-start space-x-4">
-                      <div className="text-4xl group-hover:scale-110 transition-transform duration-200">{testimonial.avatar}</div>
+                      <div className="text-3xl sm:text-4xl group-hover:scale-110 transition-transform duration-200">{testimonial.avatar}</div>
                       <div className="flex-1">
                         <div className="flex items-center space-x-2 mb-3">
                           {[...Array(testimonial.rating)].map((_, i) => (
@@ -1745,46 +1468,32 @@ console.log('Ready for production use');
                     </div>
                   </div>
                 ))}
-                
-                <div className="flex justify-center space-x-3 mt-6">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentTestimonial(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === currentTestimonial 
-                          ? 'bg-blue-400 scale-125 shadow-lg' 
-                          : `${darkMode ? 'bg-gray-600' : 'bg-gray-300'} hover:bg-blue-300 hover:scale-110`
-                      }`}
-                    />
-                  ))}
-                </div>
               </div>
             </div>
           </div>
         </div>
         
-        <div className={`absolute bottom-8 left-8 ${darkMode ? 'text-gray-500' : 'text-gray-400'} text-sm font-mono`}>.04</div>
+        <div className={`absolute bottom-8 left-4 sm:left-8 ${darkMode ? 'text-gray-500' : 'text-gray-400'} text-sm font-mono`}>.04</div>
       </section>
 
-      {/* Section 05 - Enhanced Contact */}
+      {/* Section 05 - Contact */}
       <section 
         ref={el => {
           if (el) sectionsRef.current[4] = el;
         }}
-        className="min-h-screen py-20 px-8"
+        className="min-h-screen py-16 sm:py-20 px-4 sm:px-8"
       >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Info */}
           <div className={`transition-all duration-1000 ${
             activeSection >= 4 ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
           }`}>
-            <h3 className="text-4xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               LET'S BUILD SOMETHING AMAZING
             </h3>
             
-            <div className={`space-y-6 ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-12`}>
-              <p className="text-lg leading-relaxed">
+            <div className={`space-y-4 sm:space-y-6 ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-8 sm:mb-12`}>
+              <p className="text-base sm:text-lg leading-relaxed">
                 Ready to transform your digital presence? I'd love to hear about your project and discuss how we can bring your vision to life with cutting-edge technology and proven results.
               </p>
               
@@ -1796,43 +1505,11 @@ console.log('Ready for production use');
                   { icon: Clock, text: profileData.responseTime, color: "text-green-400" }
                 ].map((item, index) => (
                   <div key={index} className="flex items-center space-x-4 group">
-                    <item.icon className={`w-6 h-6 ${item.color} group-hover:scale-110 transition-transform duration-200`} />
-                    <span className="group-hover:text-blue-400 transition-colors duration-200">{item.text}</span>
+                    <item.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${item.color} group-hover:scale-110 transition-transform duration-200`} />
+                    <span className="group-hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base">{item.text}</span>
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="space-y-6">
-              <h4 className="text-xl font-semibold mb-4 flex items-center">
-                <Heart className="mr-2 text-red-400" />
-                Why Work With Me?
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  "2+ years of proven experience",
-                  "Modern tech stack & best practices",
-                  "Responsive & accessible designs",
-                  "Ongoing support & maintenance",
-                  "Transparent communication",
-                  "Results-driven approach"
-                ].map((reason, index) => (
-                  <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors duration-200 group">
-                    <Zap className="w-5 h-5 text-yellow-400 group-hover:scale-110 transition-transform duration-200" />
-                    <span className="group-hover:text-blue-400 transition-colors duration-200">{reason}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
-              <div className="flex items-center space-x-2 mb-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-green-400 font-semibold">{profileData.availability}</span>
-              </div>
-              <p className="text-sm text-gray-400">
-                Accepting new projects for Q1 2025. Book a free consultation today!
-              </p>
             </div>
           </div>
 
@@ -1840,16 +1517,16 @@ console.log('Ready for production use');
           <div className={`transition-all duration-1000 delay-300 ${
             activeSection >= 4 ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
           }`}>
-            <h3 className="text-4xl font-bold mb-8">CONTACT FORM</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">CONTACT FORM</h3>
             
             {emailSent ? (
-              <div className={`p-8 rounded-xl ${darkMode ? 'bg-green-900/30 border border-green-800' : 'bg-green-100 border border-green-300'} text-center animate-in slide-in-from-bottom-4 duration-500`}>
-                <div className="text-6xl mb-4 animate-bounce">✅</div>
-                <h4 className="text-2xl font-bold mb-2">Message Sent Successfully!</h4>
+              <div className={`p-6 sm:p-8 rounded-xl ${darkMode ? 'bg-green-900/30 border border-green-800' : 'bg-green-100 border border-green-300'} text-center animate-in slide-in-from-bottom-4 duration-500`}>
+                <div className="text-4xl sm:text-6xl mb-4 animate-bounce">✅</div>
+                <h4 className="text-xl sm:text-2xl font-bold mb-2">Message Sent Successfully!</h4>
                 <p className={`${darkMode ? 'text-green-300' : 'text-green-700'} mb-4`}>
                   Thanks for reaching out! I'll get back to you within 24 hours with a detailed response.
                 </p>
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
                   <button
                     onClick={() => setChatOpen(true)}
                     className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200"
@@ -1865,7 +1542,7 @@ console.log('Ready for production use');
                 </div>
               </div>
             ) : (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {[
                   { field: 'name', label: 'Your Name', type: 'text', placeholder: 'Enter your full name', required: true },
                   { field: 'email', label: 'Your Email', type: 'email', placeholder: 'your@email.com', required: true },
@@ -1915,14 +1592,6 @@ console.log('Ready for production use');
                       <Download className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
                       <span>Download Resume</span>
                     </button>
-                    <span className="text-gray-500">•</span>
-                    <button 
-                      onClick={() => setCodeEditorOpen(true)}
-                      className={`inline-flex items-center space-x-2 ${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors duration-300 group`}
-                    >
-                      <Code className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
-                      <span>View Live Code</span>
-                    </button>
                   </div>
                   
                   <p className="text-xs text-gray-500">
@@ -1934,36 +1603,36 @@ console.log('Ready for production use');
           </div>
         </div>
         
-        <div className={`absolute bottom-8 left-8 ${darkMode ? 'text-gray-500' : 'text-gray-400'} text-sm font-mono`}>.05</div>
+        <div className={`absolute bottom-8 left-4 sm:left-8 ${darkMode ? 'text-gray-500' : 'text-gray-400'} text-sm font-mono`}>.05</div>
       </section>
 
       {/* Enhanced Footer */}
-      <footer className={`py-16 text-center border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} relative overflow-hidden`}>
+      <footer className={`py-12 sm:py-16 text-center border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} relative overflow-hidden`}>
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
         
         <div className={`relative z-10 transition-all duration-1000 ${
           activeSection >= 4 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
           <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-2 tracking-wider`}>THE END</p>
-          <h4 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h4 className="text-2xl sm:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             THANKS FOR VISITING
           </h4>
-          <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-8 text-lg`}>
+          <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-8 text-base sm:text-lg`}>
             LET'S BUILD SOMETHING AMAZING TOGETHER
           </p>
           
-          <div className="flex justify-center space-x-6 mb-8">
+          <div className="flex justify-center space-x-4 sm:space-x-6 mb-8">
             {socialLinks.map((social) => {
               const Icon = social.icon;
               return (
                 <a
                   key={social.label}
                   href={social.url}
-                  className={`p-4 rounded-full ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'} transition-all duration-300 transform hover:scale-110 hover:rotate-12 group`}
+                  className={`p-3 sm:p-4 rounded-full ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'} transition-all duration-300 transform hover:scale-110 hover:rotate-12 group`}
                   onMouseEnter={() => setCursorVariant('hover')}
                   onMouseLeave={() => setCursorVariant('default')}
                 >
-                  <Icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-200" />
                 </a>
               );
             })}
@@ -1971,143 +1640,13 @@ console.log('Ready for production use');
           
           <div className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} space-y-3`}>
             <div className="flex items-center justify-center space-x-2">
-              <span>© 2024 {profileData.name}. Made with</span>
+              <span>© 2025 {profileData.name}. Made with</span>
               <Heart className="w-4 h-4 inline text-red-400 animate-pulse" />
               <span>and lots of coffee.</span>
             </div>
           </div>
         </div>
       </footer>
-
-      {/* Live Code Editor Modal */}
-      {codeEditorOpen && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 animate-in fade-in duration-300">
-          <div className={`${darkMode ? 'bg-gray-900 border border-gray-700' : 'bg-white border border-gray-200'} rounded-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden shadow-2xl`}>
-            <div className={`p-4 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex items-center justify-between`}>
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-2">
-                  <Terminal className="w-6 h-6 text-blue-500" />
-                  <h3 className="text-xl font-bold">Live Code Editor</h3>
-                </div>
-                <select
-                  value={selectedCodeExample}
-                  onChange={(e) => setSelectedCodeExample(parseInt(e.target.value))}
-                  className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-gray-800 border-gray-600' : 'bg-gray-100 border-gray-300'} border focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                >
-                  {codeExamples.map((example, index) => (
-                    <option key={index} value={index}>{example.title}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => copyToClipboard(editorCode)}
-                  className={`px-3 py-2 ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'} rounded-lg transition-colors flex items-center space-x-2`}
-                >
-                  <Copy className="w-4 h-4" />
-                  <span>Copy</span>
-                </button>
-                <button
-                  onClick={runCode}
-                  disabled={isCodeRunning}
-                  className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50 transition-all duration-200 flex items-center space-x-2 transform hover:scale-105"
-                >
-                  {isCodeRunning ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
-                  <span>{isCodeRunning ? 'Running' : 'Run Code'}</span>
-                </button>
-                <button
-                  onClick={() => setCodeEditorOpen(false)}
-                  className={`p-2 rounded-lg ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'} transition-colors`}
-                >
-                  <XCircle className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 h-[600px]">
-              <div className={`border-r ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex flex-col`}>
-                <div className={`p-3 border-b ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex items-center justify-between`}>
-                  <span className="text-sm font-semibold">Code Editor</span>
-                </div>
-                <textarea
-                  value={editorCode}
-                  onChange={(e) => setEditorCode(e.target.value)}
-                  className={`flex-1 p-4 font-mono text-sm resize-none focus:outline-none ${
-                    darkMode ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'
-                  }`}
-                  style={{ fontFamily: 'JetBrains Mono, Monaco, Consolas, "Courier New", monospace' }}
-                  spellCheck="false"
-                />
-              </div>
-              
-              <div className="flex flex-col">
-                <div className={`p-3 border-b ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex items-center justify-between`}>
-                  <span className="text-sm font-semibold">Output Console</span>
-                </div>
-                <div className={`flex-1 p-4 font-mono text-sm overflow-auto ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-gray-50 text-gray-900'}`}>
-                  <pre className="whitespace-pre-wrap">{editorOutput || "// Click 'Run Code' to execute...\n// The output will appear here\n\nconsole.log('Welcome to the live code editor!');"}</pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Project Details Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 animate-in fade-in duration-300">
-          <div className={`${darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'} rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl`}>
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h3 className="text-3xl font-bold mb-2">Project Details</h3>
-                  <p className="text-blue-400 text-lg">Enhanced Portfolio Features</p>
-                </div>
-                <button 
-                  onClick={() => setShowModal(false)}
-                  className={`p-2 rounded-full ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'} transition-colors duration-300`}
-                >
-                  <XCircle className="w-6 h-6" />
-                </button>
-              </div>
-              
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-semibold mb-3 flex items-center text-xl">
-                    <FileText className="w-5 h-5 mr-2" />
-                    Project Overview
-                  </h4>
-                  <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed text-lg`}>
-                    This is a comprehensive portfolio showcasing modern web development with advanced features.
-                  </p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-4 flex items-center text-xl">
-                    <CheckCircle className="w-5 h-5 mr-2" />
-                    Key Features
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {[
-                      "AI-powered chatbot",
-                      "Live code editor",
-                      "Responsive design",
-                      "Dark mode toggle",
-                      "Interactive animations",
-                      "Project filtering"
-                    ].map((feature, index) => (
-                      <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-700/30 transition-colors duration-200">
-                        <Zap className="w-4 h-4 text-yellow-400 flex-shrink-0" />
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
