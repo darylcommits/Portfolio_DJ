@@ -101,7 +101,7 @@ const Portfolio = () => {
     email: "dv2dsr@gmail.com",
     phone: "+639362482388",
     bio: "Passionate full-stack developer with 3+ years of experience crafting innovative web solutions. Specialized in React, Tailwind CSS, and Supabase with a proven track record of delivering scalable applications that drive business growth.",
-    image: "https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/502579897_2945522685621001_1262536881292075170_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFSGUJfLqyBJS5cm6ieUzWdY14aC-WBALdjXhoL5YEAt0BemM15joUyKgcChjnRXOMI9OGz0UAzDf19V-ja_MHj&_nc_ohc=uR9khxzjNUQQ7kNvwGYVNfE&_nc_oc=AdlGoa-LVr2W7zSWS2YBo3lmf1fH5qbGwf1qOQWnijw8zRlShWTQ4lOQ3DEoLMAankI&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=kxapkQ93pra-D4m8SjMGIw&oh=00_AfQh8J0Tz0Ll5u_Pd0-CleRhkjm_Gbkc1k_z0YRoS8ShAg&oe=686FD8D6",
+    image: "blob:https://www.facebook.com/d44e449d-8ee8-4e73-b109-99e02866d8e9",
     availability: "Full Stack Developer",
     responseTime: "Within 24 hours",
     languages: ["English", "Tagalog", "Filipino"],
