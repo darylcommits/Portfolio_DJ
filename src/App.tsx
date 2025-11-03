@@ -101,7 +101,7 @@ const Portfolio = () => {
     email: "dv2dsr@gmail.com",
     phone: "+639362482388",
     bio: "Passionate full-stack developer with 3+ years of experience crafting innovative web solutions. Specialized in React, Tailwind CSS, and Supabase with a proven track record of delivering scalable applications that drive business growth.",
-    image: "https://scontent.fcrk2-3.fna.fbcdn.net/v/t39.30808-6/502579897_2945522685621001_1262536881292075170_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFSGUJfLqyBJS5cm6ieUzWdY14aC-WBALdjXhoL5YEAt0BemM15joUyKgcChjnRXOMI9OGz0UAzDf19V-ja_MHj&_nc_ohc=cNVnhVj5PhsQ7kNvwFx9Lgc&_nc_oc=AdnGx2YpGrLju-YuEjZyrC34_t_FcCmWukLbEesONAHyBu9Z_zWqbZ0Wm8Zg3VDqAdE&_nc_zt=23&_nc_ht=scontent.fcrk2-3.fna&_nc_gid=WSxsdDfBKgt7ey1bo5VLhA&oh=00_Afh75bKGbg0CxZ0P4Qveo6q9upWkzoUsGpqkF3JMQeEt9g&oe=690E7D56,
+    image: "https://scontent.fcrk2-3.fna.fbcdn.net/v/t39.30808-6/502579897_2945522685621001_1262536881292075170_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFSGUJfLqyBJS5cm6ieUzWdY14aC-WBALdjXhoL5YEAt0BemM15joUyKgcChjnRXOMI9OGz0UAzDf19V-ja_MHj&_nc_ohc=cNVnhVj5PhsQ7kNvwFx9Lgc&_nc_oc=AdnGx2YpGrLju-YuEjZyrC34_t_FcCmWukLbEesONAHyBu9Z_zWqbZ0Wm8Zg3VDqAdE&_nc_zt=23&_nc_ht=scontent.fcrk2-3.fna&_nc_gid=WSxsdDfBKgt7ey1bo5VLhA&oh=00_Afh75bKGbg0CxZ0P4Qveo6q9upWkzoUsGpqkF3JMQeEt9g&oe=690E7D56",
     availability: "Full Stack Developer",
     responseTime: "Within 24 hours",
     languages: ["English", "Tagalog", "Filipino"],
